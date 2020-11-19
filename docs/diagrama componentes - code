@@ -1,0 +1,45 @@
+@startuml
+package core {
+ component views
+ component routes
+ component controller
+ component helpers
+
+ database mysql {
+  component plugins
+  component customer
+  component products
+  component sales
+  component employees
+
+  customer - sales
+  sales - products
+  plugins -- customer
+  plugins -- products
+  plugins -- sales
+  plugins -- employees
+}
+
+ routes -- views
+ routes - controller
+ controller - helpers
+ views -- controller
+ controller - mysql
+
+ folder Modules
+
+}
+
+
+ component Customer
+ component Products
+ component Sales
+ component Employees
+
+ Customer --> Modules
+ Products --> Modules
+ Sales --> Modules
+
+ Modules --> views
+ Modules --> mysql
+@enduml
