@@ -19,11 +19,15 @@
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s4">
                 <input id="amount" type="number" class="validate" name="amount">
                 <label for="amount">Cantidad</label>
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s4">
+                <input id="price" type="text" class="validate" name="price">
+                <label for="price">Precio</label>
+                </div>
+                <div class="input-field col s4">
                 <input id="fecha" type="date" class="validate" name="fecha">
                 <label for="fecha">Fecha</label>
                 </div>

@@ -53,8 +53,13 @@ class SalesController extends Controller
             'sale_id' => $newSale->id,
             'product_id' => $request->product,
             'amount' => $request->amount,
-            'price' => 3
+            'price' => $request->price
         ];
+
+        $product = Product::findOrFail($request->product);
+        $product->stock = $product->stock - $request->amount;
+
+        $product->save();
 
         $newSale->products()->attach($newSale->id, $dataForProductSale);
         return redirect()->route('sales.index');
