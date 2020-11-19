@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
-@section('link-nav')
-    <li><a href="{{ route('products.index') }}">Productos</a></li>
+@section('nav-bar')
+    @include('layouts._nav')
 @endsection
 
 @section('content')

@@ -27,7 +27,8 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('products::create');
+        $plugins = Plugin::all();
+        return view('products::create', ["plugins" => $plugins]);
     }
 
     /**
@@ -58,8 +59,9 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
+        $plugins = Plugin::all();
         $product = Product::findOrFail($id);
-        return view('products::edit', ['product' => $product]);
+        return view('products::edit', ['product' => $product, "plugins" => $plugins]);
     }
 
     /**

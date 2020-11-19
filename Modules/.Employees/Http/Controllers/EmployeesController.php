@@ -1,14 +1,14 @@
 <?php
 
-namespace Modules\Customer\Http\Controllers;
+namespace Modules\Employees\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Modules\Customer\Entities\Customer;
+use Modules\Employees\Entities\Employee;
 use App\Models\Plugin;
 
-class CustomerController extends Controller
+class EmployeesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class CustomerController extends Controller
     public function index()
     {
         $plugins = Plugin::all();
-        $customers = Customer::all();
-        return view('customer::index', ['customers' => $customers, "plugins" => $plugins]);
+        $employees = Employee::all();
+        return view('employees::index', ['employees' => $employees, 'plugins' => $plugins]);
     }
 
     /**
@@ -28,7 +28,7 @@ class CustomerController extends Controller
     public function create()
     {
         $plugins = Plugin::all();
-        return view('customer::create', ["plugins" => $plugins]);
+        return view('employees::create', ['plugins' => $plugins]);
     }
 
     /**
@@ -38,8 +38,8 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        Customer::create($request->all());
-        return redirect()->route('customer.index');
+        Employee::create($request->all());
+        return redirect()->route('employees.index');
     }
 
     /**
@@ -49,7 +49,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        return view('customer::show');
+        return view('employees::show');
     }
 
     /**
@@ -60,8 +60,8 @@ class CustomerController extends Controller
     public function edit($id)
     {
         $plugins = Plugin::all();
-        $customer = Customer::findOrFail($id);
-        return view('customer::edit', ['customer' => $customer, "plugins" => $plugins]);
+        $employee = Employee::findOrFail($id);
+        return view('employees::edit', ['plugins' => $plugins, 'employee' => $employee]);
     }
 
     /**
@@ -72,19 +72,19 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $customer = Customer::findOrFail($id);
-        $customerTemp = $request->all();
+        $employee = Employee::findOrFail($id);
+        $employeeTemp = $request->all();
 
-        $customer->name = $customerTemp['name'];
-        $customer->lastname = $customerTemp['lastname'];
-        $customer->email = $customerTemp['email'];
-        $customer->phone = $customerTemp['phone'];
-        $customer->birthday = $customerTemp['birthday'];
-        $customer->address = $customerTemp['address'];
+        $employee->name = $employeeTemp['name'];
+        $employee->lastname = $employeeTemp['lastname'];
+        $employee->email = $employeeTemp['email'];
+        $employee->phone = $employeeTemp['phone'];
+        $employee->birthday = $employeeTemp['birthday'];
+        $employee->address = $employeeTemp['address'];
 
-        $customer->save();
+        $employee->save();
 
-        return redirect()->route('customer.index');
+        return redirect()->route('employees.index');
     }
 
     /**
@@ -94,8 +94,8 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        $customer = Customer::findOrFail($id);
-        $customer->delete();
-        return redirect()->route('customer.index');
+        $employee = Employee::findOrFail($id);
+        $employee->delete();
+        return redirect()->route('employees.index');
     }
 }

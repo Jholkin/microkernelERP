@@ -8,10 +8,10 @@
     <h1>Hello World</h1>
 
     <p>
-        This view is loaded from module: {!! config('customer.name') !!}
+        This view is loaded from module: {!! config('employee.name') !!}
     </p>
 
-    @if(empty($customers))
+    @if(empty($employees))
         <p>No hay Clientes registrados</p>
     @else
             <table>
@@ -26,19 +26,19 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-        @foreach($customers as $customer)
+        @foreach($employees as $employee)
 
                 <tbody>
                     <tr>
-                        <td> {{ $customer->name }} </td>
-                        <td> {{ $customer->lastname }} </td>
-                        <td> {{ $customer->email }} </td>
-                        <td> {{ $customer->phone }} </td>
-                        <td> {{ $customer->birthday }} </td>
-                        <td> {{ $customer->address }} </td>
+                        <td> {{ $employee->name }} </td>
+                        <td> {{ $employee->lastname }} </td>
+                        <td> {{ $employee->email }} </td>
+                        <td> {{ $employee->phone }} </td>
+                        <td> {{ $employee->birthday }} </td>
+                        <td> {{ $employee->address }} </td>
                         <td> 
-                            <a href="{{ route('customer.edit', $customer->id) }}">Editar</a>
-                            <a href="{{ route('customer.destroy', $customer->id) }}">Eliminar</a>
+                            <a href="{{ route('employees.edit', $employee->id) }}">Editar</a>
+                            <a href="{{ route('employees.destroy', $employee->id) }}">Eliminar</a>
                         </td>
                     </tr>
                 </tbody>
@@ -46,8 +46,8 @@
             </table>
     @endif
 
-    <a href="{{ route('customer.create') }}">
-        <button class="btn waves-effect waves-light" type="submit" name="action">Nuevo Cliente
+    <a href="{{ route('employees.create') }}">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Nuevo Empleado
             <i class="material-icons right">send</i>
         </button>
     </a>
